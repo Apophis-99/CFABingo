@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="PrimaryColour">#5C68D7</SolidColorBrush>
+    <SolidColorBrush x:Key="PrimaryColourLight">#6983D6</SolidColorBrush>
+    <SolidColorBrush x:Key="PrimaryColourDark">#4C51D6</SolidColorBrush>
+    <SolidColorBrush x:Key="PrimaryBorderColour">#303CA6</SolidColorBrush>
+
+    <SolidColorBrush x:Key="SecondaryColour">#7C8BF1</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondaryColourLight">#87B3F0</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondaryColourDark">#6164F0</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondaryBorderColour">#4F5BC7</SolidColorBrush>
+
+    <SolidColorBrush x:Key="TertiaryColour">#4854D0</SolidColorBrush>
+    <SolidColorBrush x:Key="TertiaryColourLight">#536FCF</SolidColorBrush>
+    <SolidColorBrush x:Key="TertiaryColourDark">#3539CF</SolidColorBrush>
+    <SolidColorBrush x:Key="TertiaryBorderColour">#3844B7</SolidColorBrush>
+
+    <FontFamily x:Key="DefaultFont">Arial</FontFamily>
+
+</ResourceDictionary>

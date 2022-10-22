@@ -1,0 +1,19 @@
+﻿<Application
+    StartupUri="MainWindow.xaml"
+    x:Class="CFABingo.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:local="clr-namespace:CFABingo"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Theme.xaml" />
+
+                <ResourceDictionary Source="Styles/Panels/PanelHeaderStyles.xaml" />
+
+                <ResourceDictionary Source="Styles/Panels/MainPanelStyles.xaml" />
+                <ResourceDictionary Source="Styles/Panels/BottomPanelStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
