@@ -14,7 +14,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:PanelHeader Grid.Row="0" Title="Recent" />
+        <controls:PanelHeader
+            Grid.Row="0"
+            Orientation="Vertical"
+            Title="Recent" />
 
     </Grid>
 </UserControl>

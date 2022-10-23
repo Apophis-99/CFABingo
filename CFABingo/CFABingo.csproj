@@ -10,9 +10,9 @@
     <ItemGroup>
       <None Remove="Assets\CollapseIcon.svg" />
       <None Remove="Assets\CollapseIcon.png" />
-      <Content Include="Assets\CollapseIcon.png">
+      <Resource Include="Assets\CollapseIcon.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+      </Resource>
     </ItemGroup>
 
 </Project>
