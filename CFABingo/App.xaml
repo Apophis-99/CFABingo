@@ -9,7 +9,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Theme.xaml" />
 
-                <ResourceDictionary Source="Styles/Panels/PanelHeaderStyles.xaml" />
+                <ResourceDictionary Source="Styles/MainStyles.xaml" />
+
+                <ResourceDictionary Source="Styles/Controls/PanelHeaderStyles.xaml" />
+                <ResourceDictionary Source="Styles/Controls/SettingsOptionStyles.xaml" />
 
                 <ResourceDictionary Source="Styles/Panels/MainPanelStyles.xaml" />
                 <ResourceDictionary Source="Styles/Panels/BottomPanelStyles.xaml" />

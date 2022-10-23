@@ -2,7 +2,7 @@
     Height="540"
     MinHeight="540"
     MinWidth="960"
-    Title="MainWindow"
+    Title="Bingo"
     Width="960"
     mc:Ignorable="d"
     x:Class="CFABingo.MainWindow"
@@ -25,17 +25,26 @@
 
         <panels:MainPanel Grid.Column="0" Grid.Row="0" />
 
-        <GridSplitter Grid.Column="0" Grid.Row="1" />
+        <GridSplitter
+            Grid.Column="0"
+            Grid.Row="1"
+            HorizontalAlignment="Stretch"
+            ResizeDirection="Rows"
+            VerticalAlignment="Stretch" />
 
         <panels:BottomPanel Grid.Column="0" Grid.Row="2" />
 
-        <GridSplitter Grid.Column="1" Grid.Row="0" />
+        <GridSplitter
+            Grid.Column="1"
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            HorizontalAlignment="Stretch"
+            ResizeDirection="Columns"
+            VerticalAlignment="Stretch" />
 
         <panels:SidePanel
             Grid.Column="2"
             Grid.Row="0"
             Grid.RowSpan="3" />
-
-
     </Grid>
 </Window>

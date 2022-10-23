@@ -1,31 +1,24 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace CFABingo.Controls;
 
 public partial class PanelHeader
 {
-    public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string), typeof(PanelHeader));
-    public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(PanelHeader));
+    private string _title = "<PanelTitle>";
 
     public string Title
     {
-        get => (string) GetValue(TitleProperty);
+        get => _title;
         set 
         { 
-            SetValue(TitleProperty, value);
-            TitleText.Text = Title;
+            _title = value;
+            TitleText.Text = _title;
         }
     }
-    public Orientation Orientation
-    {
-        get => (Orientation)GetValue(OrientationProperty);
-        set => SetValue(TitleProperty, value);
-    }
-    
+    public Orientation Orientation { get; set; }
+
     public PanelHeader()
     {
         InitializeComponent();
-        TitleText.Text = Title;
     }
 }
