@@ -1,15 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="Grid" x:Key="MainPanel">
-        <Setter Property="Background" Value="{StaticResource PrimaryColourLight}" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryColourLight}" />
+
     </Style>
 
     <Style TargetType="Grid" x:Key="MainPanelBall">
         <Style.Resources>
             <Style TargetType="Ellipse">
                 <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Fill" Value="{StaticResource TertiaryColour}" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+
+                <Setter Property="Fill" Value="{DynamicResource TertiaryColourDark}" />
                 <Setter Property="Margin" Value="20" />
                 <Setter Property="Stretch" Value="Uniform" />
             </Style>
@@ -26,8 +28,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border
-                        Background="{StaticResource PrimaryColour}"
-                        BorderBrush="{StaticResource PrimaryBorderColour}"
+                        Background="{DynamicResource PrimaryColour}"
+                        BorderBrush="{DynamicResource PrimaryBorderColour}"
                         BorderThickness="3"
                         CornerRadius="20"
                         Height="60"
@@ -36,7 +38,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource TertiaryColour}" />
+                            <Setter Property="Background" Value="{DynamicResource TertiaryColour}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -44,7 +46,7 @@
         </Setter>
         <Style.Resources>
             <Style TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+                <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}" />
                 <Setter Property="FontSize" Value="32" />
                 <Setter Property="TextAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Center" />

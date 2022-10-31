@@ -4,5 +4,6 @@ public enum SettingsOptionType
 {
     Integer,
     String,
-    Colour
+    Colour,
+    Boolean
 }

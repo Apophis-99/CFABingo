@@ -13,11 +13,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0">
             <TabItem Header="Theme">
                 <StackPanel>
-                    <controls:SettingsOption Title="Primary Colour" Type="Colour" />
-                    <controls:SettingsOption Title="Secondary Colour" Type="Colour" />
+                    <controls:SettingsOption
+                        Title="Primary Colour"
+                        Type="Colour"
+                        x:Name="PrimaryColour" />
+                    <controls:SettingsOption
+                        Title="Secondary Colour"
+                        Type="Colour"
+                        x:Name="SecondaryColour" />
+                    <controls:SettingsOption
+                        Title="Tertiary Colour"
+                        Type="Colour"
+                        x:Name="TertiaryColour" />
                 </StackPanel>
             </TabItem>
             <TabItem Header="Constraints">
@@ -26,7 +41,23 @@
                     <controls:SettingsOption Title="Height" Type="Integer" />
                 </StackPanel>
             </TabItem>
+            <TabItem Header="Panels">
+                <StackPanel>
+                    <controls:SettingsOption
+                        Title="Button is visible"
+                        Type="Boolean"
+                        x:Name="MainPanelVisible" />
+                </StackPanel>
+            </TabItem>
         </TabControl>
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button Click="Apply_Clicked" Content="Apply" />
+            <Button Content="Cancel" />
+        </StackPanel>
 
     </Grid>
 </Window>

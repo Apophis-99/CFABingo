@@ -15,6 +15,10 @@
     <SolidColorBrush x:Key="TertiaryColourDark">#3539CF</SolidColorBrush>
     <SolidColorBrush x:Key="TertiaryBorderColour">#3844B7</SolidColorBrush>
 
+    <SolidColorBrush Color="#345333" x:Key="RecentPanelPrimary" />
+
+    <SolidColorBrush Color="#978192" x:Key="ScrollbarTrackColour" />
+
     <FontFamily x:Key="DefaultFont">Arial</FontFamily>
 
 </ResourceDictionary>

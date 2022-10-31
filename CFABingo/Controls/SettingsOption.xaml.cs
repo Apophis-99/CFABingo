@@ -1,7 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using CFABingo.Utilities;
+using Xceed.Wpf.Toolkit;
 
 namespace CFABingo.Controls;
 
@@ -39,7 +42,6 @@ public partial class SettingsOption
                 {
                     Text="100"
                 };
-
                 break;
             case SettingsOptionType.String:
                 TypeEncapsulator.Child = new TextBox
@@ -48,13 +50,23 @@ public partial class SettingsOption
                 };
                 break;
             case SettingsOptionType.Colour:
-                TypeEncapsulator.Child = new Button
-                {
-                    Background = Brushes.Aqua
-                };
+                TypeEncapsulator.Child = new ColorPicker();
                 break;
-            default:
+            case SettingsOptionType.Boolean:
+                TypeEncapsulator.Child = new ToggleButton();
                 break;
         }
+    }
+
+    public dynamic? Get()
+    {
+        return _type switch
+        {
+            SettingsOptionType.Boolean => ((ToggleButton)TypeEncapsulator.Child).IsChecked,
+            SettingsOptionType.Colour => ((ColorPicker)TypeEncapsulator.Child).SelectedColor,
+            SettingsOptionType.Integer => Convert.ToInt32(((TextBox)TypeEncapsulator.Child).Text),
+            SettingsOptionType.String => ((TextBox)TypeEncapsulator.Child).Text,
+            _ => 0
+        };
     }
 }

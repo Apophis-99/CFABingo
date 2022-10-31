@@ -1,0 +1,35 @@
+﻿[
+    {
+      "Primary Colour": "#5C68D7",
+      "Primary Colour Light": "#6983D6",
+      "Primary Colour Dark": "#4C51D6",
+      "Primary Border Colour": "#303CA6",
+
+      "Secondary Colour": "#7C8BF1",
+      "Secondary Colour Light": "#87B3F0",
+      "Secondary Colour Dark": "#6164F0",
+      "Secondary Border Colour": "#4F5BC7",
+
+      "Tertiary Colour": "#4854D0",
+      "Tertiary Colour Light": "#536FCF",
+      "Tertiary Colour Dark": "#3539CF",
+      "Tertiary Border Colour": "#3844B7"
+      
+    },
+    {
+      "Primary Colour": "#5C68D7",
+      "Primary Colour Light": "#6983D6",
+      "Primary Colour Dark": "#4C51D6",
+      "Primary Border Colour": "#303CA6",
+      
+      "Secondary Colour": "#7C8BF1",
+      "Secondary Colour Light": "#87B3F0",
+      "Secondary Colour Dark": "#6164F0",
+      "Secondary Border Colour": "#4F5BC7",
+
+      "Tertiary Colour": "#4854D0",
+      "Tertiary Colour Light": "#536FCF",
+      "Tertiary Colour Dark": "#3539CF",
+      "Tertiary Border Colour": "#3844B7"
+    }
+]

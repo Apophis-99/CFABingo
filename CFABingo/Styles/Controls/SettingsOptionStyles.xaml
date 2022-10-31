@@ -7,6 +7,7 @@
 
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="18" />
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style TargetType="Border">
                 <Setter Property="Margin" Value="5,3" />
@@ -16,7 +17,7 @@
                 <Setter Property="Height" Value="30" />
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="BorderBrush" Value="Crimson" />
+                        <Setter Property="BorderBrush" Value="Purple" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -30,6 +31,28 @@
             <Style TargetType="Button">
                 <Setter Property="Background" Value="Black" />
                 <Setter Property="BorderThickness" Value="0" />
+            </Style>
+            <Style TargetType="ToggleButton">
+                <Setter Property="Background" Value="Red" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Background" Value="Green" />
+                                    <Setter Property="Content" Value="True" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter Property="Background" Value="Red" />
+                                    <Setter Property="Content" Value="False" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
         </Style.Resources>
