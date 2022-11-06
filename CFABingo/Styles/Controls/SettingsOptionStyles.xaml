@@ -7,6 +7,7 @@
 
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="18" />
+                <Setter Property="Margin" Value="2,0,0,0" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style TargetType="Border">

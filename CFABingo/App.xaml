@@ -13,10 +13,12 @@
 
                 <ResourceDictionary Source="Styles/Controls/PanelHeaderStyles.xaml" />
                 <ResourceDictionary Source="Styles/Controls/SettingsOptionStyles.xaml" />
-                <ResourceDictionary Source="Styles/Controls/MenuStyles.xaml" />
+
+                <ResourceDictionary Source="Styles/Windows/SettingsWindowStyles.xaml" />
 
                 <ResourceDictionary Source="Styles/Panels/MainPanelStyles.xaml" />
                 <ResourceDictionary Source="Styles/Panels/RecentPanelStyles.xaml" />
+                <ResourceDictionary Source="Styles/Panels/GameStatePanelStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

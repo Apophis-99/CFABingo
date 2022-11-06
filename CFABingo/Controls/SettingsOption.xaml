@@ -1,6 +1,6 @@
 ﻿<UserControl
-    d:DesignHeight="30"
-    d:DesignWidth="350"
+    d:DesignHeight="70"
+    d:DesignWidth="300"
     mc:Ignorable="d"
     x:Class="CFABingo.Controls.SettingsOption"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,13 +9,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Style="{StaticResource SettingsOption}">
+
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="0" x:Name="TitleText" />
-        <Border Grid.Column="2" x:Name="TypeEncapsulator" />
+        <Image
+            Grid.Column="1"
+            Height="15"
+            Margin="2,0,0,0"
+            Source="/Assets/SettingChangedIcon.png"
+            Visibility="Visible"
+            x:Name="ChangedIcon" />
+        <Border Grid.Column="3" x:Name="Encapsulator" />
+
     </Grid>
 </UserControl>

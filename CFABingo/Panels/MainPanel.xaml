@@ -1,4 +1,5 @@
 ﻿<UserControl
+    SizeChanged="Panel_SizeChanged"
     d:DesignHeight="300"
     d:DesignWidth="600"
     mc:Ignorable="d"
@@ -8,22 +9,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Style="{StaticResource MainPanel}">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Style="{StaticResource MainPanelBall}">
+        <Grid
+            Grid.Row="0"
+            Style="{StaticResource MainPanelBall}"
+            x:Name="Ball">
             <Ellipse />
-            <TextBlock Text="32" x:Name="NumberDisplay" />
+            <TextBlock Text="12" x:Name="DisplayNumberText" />
         </Grid>
 
         <Button
-            Click="RollButton_OnClick"
+            Click="Button_Clicked"
+            Content="Roll"
             Grid.Row="1"
             Style="{StaticResource MainPanelButton}"
-            x:Name="RollButton">
-            <TextBlock Text="Roll" />
-        </Button>
+            x:Name="RollButton" />
+
     </Grid>
 </UserControl>

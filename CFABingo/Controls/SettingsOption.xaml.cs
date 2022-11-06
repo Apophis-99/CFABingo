@@ -3,15 +3,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using CFABingo.Utilities;
+using CFABingo.Utilities.Settings;
 using Xceed.Wpf.Toolkit;
 
 namespace CFABingo.Controls;
 
 public partial class SettingsOption
 {
-    private string _title = "Default Title";
-    private SettingsOptionType _type;
+    private string _title = "<option_tag>";
+    private readonly SettingsOptionType _type = SettingsOptionType.String;
+    private bool _changed;
+    private dynamic _displayValue;
 
     public string Title
     {
@@ -25,48 +27,87 @@ public partial class SettingsOption
     public SettingsOptionType Type
     {
         get => _type;
-        set { _type = value; SetupType(); }
-    }
-    
-    public SettingsOption()
-    {
-        InitializeComponent();
+        init { _type = value; SetupType(); }
     }
 
-    private void SetupType()
+    public dynamic DisplayValue
     {
-        switch (Type)
-        {
-            case SettingsOptionType.Integer:
-                TypeEncapsulator.Child = new TextBox
-                {
-                    Text="100"
-                };
-                break;
-            case SettingsOptionType.String:
-                TypeEncapsulator.Child = new TextBox
-                {
-                    Text = "str"
-                };
-                break;
-            case SettingsOptionType.Colour:
-                TypeEncapsulator.Child = new ColorPicker();
-                break;
-            case SettingsOptionType.Boolean:
-                TypeEncapsulator.Child = new ToggleButton();
-                break;
+        get => _displayValue;
+        set { _displayValue = value; InitDisplayValue(); }
+    }
+
+    private bool Changed
+    {
+        get => _changed;
+        set { 
+            _changed = value;
+            ChangedIcon.Visibility = _changed ? Visibility.Visible : Visibility.Hidden;
         }
     }
 
+    public string Bond { get; init; }
+
+    public SettingsOption()
+    {
+        InitializeComponent();
+        SetupType();
+        Changed = false;
+    }
+
+    private void InitDisplayValue()
+    {
+        try
+        {
+            switch (Type)
+            {
+                case SettingsOptionType.Integer:
+                    ((TextBox)Encapsulator.Child).Text = DisplayValue.ToString();
+                    break;
+                case SettingsOptionType.String:
+                    ((TextBox)Encapsulator.Child).Text = DisplayValue.ToString();
+                    break;
+                case SettingsOptionType.Colour:
+                    ((ColorPicker)Encapsulator.Child).SelectedColor = (Color) DisplayValue;
+                    break;
+                case SettingsOptionType.Boolean:
+                    ((ToggleButton)Encapsulator.Child).IsChecked = Convert.ToBoolean(DisplayValue);
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (Exception)
+        {
+            //MainWindow.Manager.DebugWindow.Add(new DebugMessage($"Failed to initialise display value for setting: {Title}", DebugMessageLevel.Warning));
+        }
+    }
+    
+    private void SetupType()
+    {
+        Encapsulator.Child = Type switch
+        {
+            SettingsOptionType.Integer => new TextBox(),
+            SettingsOptionType.String => new TextBox(),
+            SettingsOptionType.Colour => new ColorPicker(),
+            SettingsOptionType.Boolean => new ToggleButton(),
+            _ => Encapsulator.Child
+        };
+    }
+    
     public dynamic? Get()
     {
         return _type switch
         {
-            SettingsOptionType.Boolean => ((ToggleButton)TypeEncapsulator.Child).IsChecked,
-            SettingsOptionType.Colour => ((ColorPicker)TypeEncapsulator.Child).SelectedColor,
-            SettingsOptionType.Integer => Convert.ToInt32(((TextBox)TypeEncapsulator.Child).Text),
-            SettingsOptionType.String => ((TextBox)TypeEncapsulator.Child).Text,
+            SettingsOptionType.Boolean => ((ToggleButton)Encapsulator.Child).IsChecked,
+            SettingsOptionType.Colour => new SolidColorBrush((Color)((ColorPicker) Encapsulator.Child).SelectedColor),
+            SettingsOptionType.Integer => Convert.ToInt32(((TextBox)Encapsulator.Child).Text),
+            SettingsOptionType.String => ((TextBox)Encapsulator.Child).Text,
             _ => 0
         };
+    }
+
+    public void Reset()
+    {
+        InitDisplayValue();
     }
 }

@@ -9,52 +9,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Style="{StaticResource RecentPanel}">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <controls:PanelHeader
             Grid.Row="0"
             Orientation="Vertical"
-            Title="Recent"
-            x:Name="PanelHeader" />
+            Title="Recent" />
 
         <ScrollViewer
             Grid.Row="1"
             HorizontalScrollBarVisibility="Visible"
             VerticalScrollBarVisibility="Disabled"
             x:Name="ScrollViewer">
-            <StackPanel Orientation="Horizontal" x:Name="RecentBallsContainer">
-                <Grid>
-                    <Ellipse Fill="Red" />
-                    <TextBlock Text="1" />
-                </Grid>
-                <Grid>
-                    <Ellipse Fill="Red" />
-                    <TextBlock Text="2" />
-                </Grid>
-                <Grid>
-                    <Ellipse Fill="Red" />
-                    <TextBlock Text="3" />
-                </Grid>
-                <Grid>
-                    <Ellipse Fill="Red" />
-                    <TextBlock Text="4" />
-                </Grid>
-                <Grid>
-                    <Ellipse Fill="Red" />
-                    <TextBlock Text="5" />
-                </Grid>
-                <Grid>
-                    <Ellipse Fill="Red" />
-                    <TextBlock Text="6" />
-                </Grid>
-                <Grid>
-                    <Ellipse Fill="Red" />
-                    <TextBlock Text="7" />
-                </Grid>
-            </StackPanel>
+            <StackPanel Orientation="Horizontal" x:Name="Panel" />
         </ScrollViewer>
 
     </Grid>

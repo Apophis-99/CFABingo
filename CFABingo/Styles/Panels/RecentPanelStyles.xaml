@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="Grid" x:Key="RecentPanel">
-        <Setter Property="Background" Value="{DynamicResource TertiaryColourLight}" />
+        <Setter Property="Background" Value="{DynamicResource RecentPanelBackgroundColour}" />
 
         <Style.Resources>
             <Style TargetType="ScrollViewer">
@@ -17,12 +17,14 @@
                         <Setter Property="Margin" Value="5" />
                         <Style.Resources>
                             <Style TargetType="Ellipse">
-                                <Setter Property="Fill" Value="White" />
+                                <Setter Property="Fill" Value="{DynamicResource RecentPanelBallColour}" />
                                 <Setter Property="Stretch" Value="UniformToFill" />
                             </Style>
                             <Style TargetType="TextBlock">
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="FontSize" Value="45" />
+                                <Setter Property="Foreground" Value="{DynamicResource RecentPanelBallTextColour}" />
                             </Style>
                         </Style.Resources>
                     </Style>

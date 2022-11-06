@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace CFABingo.Utilities.Debug;
+namespace CFABingo.Utilities;
 
 public enum DebugMessageLevel
 {
@@ -12,15 +12,11 @@ public enum DebugMessageLevel
     Danger
 }
 
-public struct DebugMessage
+public readonly struct DebugMessage
 {
-    private string _message;
-    private DateTime _dateTime;
-    private DebugMessageLevel _level;
-    
-    public string Message => _message;
-    public DateTime DateTime => _dateTime;
-    public DebugMessageLevel DebugLevel => _level;
+    private readonly string _message;
+    private readonly DateTime _dateTime;
+    private readonly DebugMessageLevel _level;
 
     public DebugMessage(string message, DebugMessageLevel level = DebugMessageLevel.Normal)
     {
@@ -38,10 +34,7 @@ public struct DebugMessage
         {
             Width = GridLength.Auto
         };
-        var col2 = new ColumnDefinition
-        {
-            
-        };
+        var col2 = new ColumnDefinition();
         var col3 = new ColumnDefinition
         {
             Width = GridLength.Auto
@@ -54,11 +47,11 @@ public struct DebugMessage
         // Add text blocks
         var messageTxt = new TextBlock
         {
-            Text = Message
+            Text = _message
         };
         var dateTxt = new TextBlock
         {
-            Text = DateTime.ToLongDateString()
+            Text = _dateTime.ToLongDateString()
         };
         
         Grid.SetColumn(messageTxt, 0);
@@ -68,7 +61,7 @@ public struct DebugMessage
         grid.Children.Add(dateTxt);
         
         // Style grid
-        grid.Background = new SolidColorBrush(DebugLevel switch
+        grid.Background = new SolidColorBrush(_level switch
         {
             DebugMessageLevel.Warning => Colors.Yellow,
             DebugMessageLevel.Danger => Colors.Red,

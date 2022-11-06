@@ -8,11 +8,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Assets\CollapseIcon.svg" />
-      <None Remove="Assets\CollapseIcon.png" />
       <Resource Include="Assets\CollapseIcon.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Settings\Themes\DefaultTheme.json" />
+      <Content Include="Assets\Settings\Themes\DefaultTheme.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\Settings\Settings.json" />
+      <Content Include="Assets\Settings\Settings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\SettingChangedIcon.png" />
+      <Resource Include="Assets\SettingChangedIcon.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Settings\Themes\CustomTheme1.json" />
+      <Content Include="Assets\Settings\Themes\CustomTheme1.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

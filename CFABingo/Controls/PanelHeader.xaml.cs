@@ -45,7 +45,7 @@ public partial class PanelHeader
         bitmapImage.BeginInit();
         bitmapImage.UriSource = new Uri("/Assets/CollapseIcon.png", UriKind.Relative);
         
-        if (_orientation == Orientation.Horizontal)
+        if (_orientation == Orientation.Vertical)
             bitmapImage.Rotation = _collapsed ? Rotation.Rotate90 : Rotation.Rotate270;
         else
             bitmapImage.Rotation = _collapsed ? Rotation.Rotate180 : Rotation.Rotate0;

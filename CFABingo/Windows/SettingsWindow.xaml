@@ -1,0 +1,59 @@
+﻿<Window
+    Closing="Window_Closing"
+    Height="450"
+    Title="SettingsWindow"
+    Width="800"
+    mc:Ignorable="d"
+    x:Class="CFABingo.Windows.SettingsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0">
+
+            <TabItem Header="Theme">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <ComboBox
+                        Grid.Row="0"
+                        SelectionChanged="ThemesDropDown_SelectionChanged"
+                        x:Name="ThemesDropDown">
+                        <ComboBoxItem IsSelected="True">DefaultTheme</ComboBoxItem>
+                    </ComboBox>
+
+                    <ScrollViewer Grid.Row="1">
+                        <StackPanel x:Name="ThemesTab" />
+                    </ScrollViewer>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Panels">
+                <ScrollViewer>
+                    <StackPanel x:Name="PanelsTab" />
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button Click="Apply_Clicked" Content="Apply" />
+            <Button Click="Cancel_Clicked" Content="Cancel" />
+        </StackPanel>
+
+    </Grid>
+</Window>
