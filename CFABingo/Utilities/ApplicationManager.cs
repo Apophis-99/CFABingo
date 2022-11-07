@@ -4,15 +4,15 @@ namespace CFABingo.Utilities;
 
 public class ApplicationManager
 {
-    public readonly SettingsWindow SettingsWindow;
-    public readonly DebugWindow DebugWindow;
-    public readonly Settings.Settings CurrentSettings;
+    public Settings.Settings CurrentSettings;
+    public SettingsWindow SettingsWindow;
+    //public readonly DebugWindow DebugWindow;
 
     public readonly Game CurrentGame;
 
     public ApplicationManager()
     {
-        DebugWindow = new DebugWindow();
+        //DebugWindow = new DebugWindow();
         
         CurrentSettings = new Settings.Settings();
 

@@ -25,6 +25,7 @@
                                 <Setter Property="HorizontalAlignment" Value="Center" />
                                 <Setter Property="FontSize" Value="45" />
                                 <Setter Property="Foreground" Value="{DynamicResource RecentPanelBallTextColour}" />
+                                <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}" />
                             </Style>
                         </Style.Resources>
                     </Style>

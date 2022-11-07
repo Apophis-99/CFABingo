@@ -14,8 +14,10 @@
             <Style TargetType="TextBlock">
                 <Setter Property="Background" Value="{DynamicResource PanelHeaderColour}" />
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontSize" Value="26" />
                 <Setter Property="Foreground" Value="{DynamicResource PanelHeaderTextColour}" />
+                <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}" />
+
                 <Setter Property="Padding" Value="5,0,0,0" />
                 <Setter Property="Height" Value="30" />
             </Style>

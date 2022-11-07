@@ -12,6 +12,7 @@ public partial class SettingsOption
 {
     private string _title = "<option_tag>";
     private readonly SettingsOptionType _type = SettingsOptionType.String;
+    private string _warning = "";
     private bool _changed;
     private dynamic _displayValue;
 
@@ -28,6 +29,17 @@ public partial class SettingsOption
     {
         get => _type;
         init { _type = value; SetupType(); }
+    }
+
+    public string Warning
+    {
+        get => _warning;
+        set { 
+            _warning = value;
+            if (Warning.Length == 0) return;
+            WarningText.Visibility = Visibility.Visible;
+            WarningText.Text = Warning;
+        }
     }
 
     public dynamic DisplayValue

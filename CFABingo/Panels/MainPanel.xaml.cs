@@ -1,8 +1,10 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CFABingo.Panels;
 
@@ -20,7 +22,8 @@ public partial class MainPanel
         }
     }
 
-
+    private readonly DispatcherTimer _dispatcherTimer;
+    
     private int _displayNumber;
 
     public int DisplayNumber
@@ -30,12 +33,26 @@ public partial class MainPanel
         {
             _displayNumber = value;
             DisplayNumberText.Text = (_displayNumber == 0) ? "?" : _displayNumber.ToString();
+            if (MainWindow.Manager == null) return;
+            if (!MainWindow.Manager.CurrentSettings.MainPanelBallDoIdleAnimation) return;
+            
+            if (DisplayNumber == 0)
+            {
+                _dispatcherTimer.Start();
+            }
+            else
+            {
+                _dispatcherTimer.Stop();
+            }
         }
     }
-    
+
     public MainPanel()
     {
         InitializeComponent();
+
+        _dispatcherTimer = new DispatcherTimer();
+        _dispatcherTimer.Tick += TextIdleAnim;
     }
 
     private void Button_Clicked(object sender, RoutedEventArgs e)
@@ -59,5 +76,20 @@ public partial class MainPanel
     private void Panel_SizeChanged(object sender, SizeChangedEventArgs e)
     {
         UpdateBallSize();
+    }
+    
+    private void TextIdleAnim(object? sender, EventArgs e)
+    {
+        if (!MainWindow.Manager.CurrentSettings.MainPanelBallDoIdleAnimation) return;
+        _dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, MainWindow.Manager.CurrentSettings.MainPanelIdleAnimationDelay);
+        DisplayNumberText.Text = DisplayNumberText.Text switch
+        {
+            "|" => "/",
+            "/" => "-",
+            "-" => "\\",
+            "\\" => "|",
+            "?" => "|",
+            _ => DisplayNumberText.Text
+        };
     }
 }

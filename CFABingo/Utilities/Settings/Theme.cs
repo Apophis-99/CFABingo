@@ -8,6 +8,8 @@ namespace CFABingo.Utilities.Settings;
 
 public class Theme
 {
+    public string Identifier;
+    
     public SolidColorBrush MainPanelBackgroundColour;
     public SolidColorBrush MainPanelButtonColour;
     public SolidColorBrush MainPanelButtonBorderColour;
@@ -28,6 +30,8 @@ public class Theme
 
     public Theme()
     {
+        Identifier = "";
+        
         var res = Application.Current.Resources;
         
         MainPanelBackgroundColour = (SolidColorBrush) res[nameof(MainPanelBackgroundColour)];
@@ -47,16 +51,16 @@ public class Theme
         
         PanelHeaderColour = (SolidColorBrush) res[nameof(PanelHeaderColour)];
         PanelHeaderTextColour = (SolidColorBrush) res[nameof(PanelHeaderTextColour)];
-        
-        LoadTheme("DefaultTheme");
     }
 
     public Theme LoadTheme(string identifier)
     {
+        Identifier = identifier;
+        
         JsonTheme json;
         try
         {
-            var contents = File.ReadAllText("Assets/Settings/Themes/" + identifier + ".json");
+            var contents = Files.GetThemeFile(identifier);
             json = JsonConvert.DeserializeObject<JsonTheme>(contents);
         }
         catch (Exception)

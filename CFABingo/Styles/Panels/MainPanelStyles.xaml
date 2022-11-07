@@ -16,6 +16,7 @@
             </Style>
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="72" />
+                <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}" />
                 <Setter Property="Foreground" Value="{DynamicResource MainPanelBallTextColour}" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Center" />

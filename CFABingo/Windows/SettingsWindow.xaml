@@ -1,8 +1,12 @@
 ﻿<Window
     Closing="Window_Closing"
     Height="450"
+    IsVisibleChanged="Window_OnVisibilityChange"
+    ShowInTaskbar="False"
     Title="SettingsWindow"
+    Topmost="True"
     Width="800"
+    WindowStyle="ToolWindow"
     mc:Ignorable="d"
     x:Class="CFABingo.Windows.SettingsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -17,6 +21,12 @@
         </Grid.RowDefinitions>
 
         <TabControl Grid.Row="0">
+
+            <TabItem Header="General">
+                <ScrollViewer>
+                    <StackPanel x:Name="GeneralTab" />
+                </ScrollViewer>
+            </TabItem>
 
             <TabItem Header="Theme">
                 <Grid>

@@ -26,6 +26,6 @@
     <SolidColorBrush Color="#978192" x:Key="ScrollbarTrackColour" />
 
 
-    <FontFamily x:Key="DefaultFont">Arial</FontFamily>
+    <FontFamily x:Key="DefaultFont">Cascadia Code</FontFamily>
 
 </ResourceDictionary>

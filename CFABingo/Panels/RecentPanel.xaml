@@ -17,7 +17,7 @@
 
         <controls:PanelHeader
             Grid.Row="0"
-            Orientation="Vertical"
+            Orientation="Horizontal"
             Title="Recent" />
 
         <ScrollViewer

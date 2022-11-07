@@ -14,6 +14,7 @@
                                 <Setter Property="HorizontalAlignment" Value="Center" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="Foreground" Value="{DynamicResource GameStatePanelBallTextColour}" />
+                                <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}" />
                             </Style>
                         </Style.Resources>
                     </Style>

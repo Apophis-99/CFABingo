@@ -1,5 +1,9 @@
 ﻿{
-  "MainPanelShowButton": true,
+  "MainPanelShowButton": false,
+  "MainPanelBallDoIdleAnimation": true,
+  "MainPanelIdleAnimationDelay": 500,
+  
+  "MainWindowFullscreenBorderThickness": 8,
   
   "CurrentTheme": "DefaultTheme"
 }

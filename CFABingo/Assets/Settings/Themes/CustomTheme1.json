@@ -1,19 +1,19 @@
 ﻿{
-  "MainPanelBackgroundColour": "#5C68D7",
+  "MainPanelBackgroundColour": "#229CD5",
   "MainPanelButtonColour": "#4C51D6",
   "MainPanelButtonBorderColour": "#4C51D6",
   "MainPanelBallColour": "#6983D6",
-  "MainPanelBallTextColour": "#000000",
+  "MainPanelBallTextColour": "#333333",
 
   "RecentPanelBackgroundColour": "#4854D0",
-  "RecentPanelBallColour": "#3539CF",
-  "RecentPanelBallTextColour": "#000000",
+  "RecentPanelBallColour": "#74298C",
+  "RecentPanelBallTextColour": "#333333",
 
   "GameStatePanelBackgroundColour": "#7C8BF1",
-  "GameStatePanelUncalledBallColour": "#E92D34",
-  "GameStatePanelCalledBallColour": "#51DE4A",
-  "GameStatePanelBallTextColour": "#000000",
+  "GameStatePanelUncalledBallColour": "#E92A39",
+  "GameStatePanelCalledBallColour": "#513E4A",
+  "GameStatePanelBallTextColour": "#333333",
 
-  "PanelHeaderColour": "#6743C0",
-  "PanelHeaderTextColour": "#000000"
+  "PanelHeaderColour": "#6283C0",
+  "PanelHeaderTextColour": "#333333"
 }

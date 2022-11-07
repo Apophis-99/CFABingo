@@ -17,7 +17,18 @@
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" x:Name="TitleText" />
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" x:Name="TitleText" />
+            <TextBlock
+                Grid.Row="1"
+                Style="{StaticResource SettingsOptionWarning}"
+                Visibility="Collapsed"
+                x:Name="WarningText" />
+        </Grid>
         <Image
             Grid.Column="1"
             Height="15"

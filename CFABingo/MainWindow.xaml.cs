@@ -45,12 +45,12 @@ public partial class MainWindow
 
     #endregion
     
-    // Manager
-    public static readonly ApplicationManager Manager = new();
-
     // Window States
     private WindowState _oldWindowState;
     private bool _isFullscreen;
+
+    // Manager
+    public static readonly ApplicationManager Manager = new();
     
     public MainWindow()
     {
@@ -85,7 +85,7 @@ public partial class MainWindow
 
     private static void OpenDebug(object sender, ExecutedRoutedEventArgs e)
     {
-        Manager.DebugWindow.Show();
+        //Manager.DebugWindow.Show();
     }
         
     private void ToggleFullscreen(object sender, ExecutedRoutedEventArgs e)
@@ -124,7 +124,9 @@ public partial class MainWindow
     {
         Manager.SettingsWindow.KeepHidden = false;
         Manager.SettingsWindow.Close();
-        Manager.DebugWindow.Close();
+        //Manager.DebugWindow.Close();
+        
+        Manager.CurrentSettings.SaveSettings();
     }
 
     #endregion
