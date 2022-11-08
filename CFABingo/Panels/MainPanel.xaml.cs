@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
@@ -18,7 +16,8 @@ public partial class MainPanel
         set { 
             _showButton = value;
             RollButton.Visibility = _showButton ? Visibility.Visible : Visibility.Collapsed;
-            //UpdateBallSize();
+            if (MainWindow.Manager != null)
+                UpdateBallSize();
         }
     }
 
@@ -64,12 +63,12 @@ public partial class MainPanel
     {
         var ball = (Ellipse)Ball.Children[0];
         var margin = ball.Margin.Top * 2;
-            
-        ball.Width = (Ball.ActualHeight < Ball.ActualWidth) ? Ball.ActualHeight - margin : Ball.ActualWidth - margin;
-        ball.Height = (Ball.ActualHeight < Ball.ActualWidth) ? Ball.ActualHeight - margin : Ball.ActualWidth - margin;
-
+        
+        ball.Width = Ball.ActualHeight < Ball.ActualWidth ? Ball.ActualHeight - margin : Ball.ActualWidth - margin;
+        ball.Height = Ball.ActualHeight < Ball.ActualWidth ? Ball.ActualHeight - margin : Ball.ActualWidth - margin;
+        
         Ball.Children[0] = ball;
-
+        
         ((TextBlock)Ball.Children[1]).FontSize = Ball.ActualHeight / 2 - 2;
     }
 

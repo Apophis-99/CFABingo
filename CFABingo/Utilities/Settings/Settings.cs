@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace CFABingo.Utilities.Settings;
@@ -14,6 +15,8 @@ public class Settings
     public int MainPanelIdleAnimationDelay = 300; // The delay between each frame of animation - main panel sorts itself out no need to manage in settings
 
     public int MainWindowFullscreenBorderThickness; // Adjusts the border from the edge when in fullscreen mode
+
+    public bool CheckCloseWindowIfMidGame;
     
     public Settings()
     {
@@ -37,6 +40,8 @@ public class Settings
         MainPanelIdleAnimationDelay = json.MainPanelIdleAnimationDelay;
 
         MainWindowFullscreenBorderThickness = json.MainWindowFullscreenBorderThickness;
+
+        CheckCloseWindowIfMidGame = json.CheckCloseWindowIfMidGame;
         
         SwitchTheme(json.CurrentTheme);
 
@@ -63,11 +68,20 @@ public class Settings
     {
         CurrentTheme = _themes[id];
     }
+
+    public bool ThemeDataAltered()
+    {
+        return _themes.Any(theme => theme.Value.HasChanged);
+    }
     
     public void Change(string id, dynamic val)
     {
         if (id.Contains("Colour"))
+        {
+            if (CurrentTheme.GetType().GetField(id)?.GetValue(CurrentTheme) != val)
+                CurrentTheme.HasChanged = true;
             CurrentTheme.GetType().GetField(id)?.SetValue(CurrentTheme, val);
+        }
         else
             GetType().GetField(id)?.SetValue(this, val);
     }

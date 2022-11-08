@@ -1,4 +1,5 @@
 ﻿<Window
+    Closing="Window_Closing"
     Height="810"
     Title="Bingo"
     Unloaded="Window_UnLoaded"

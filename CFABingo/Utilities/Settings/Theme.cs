@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using Newtonsoft.Json;
@@ -9,6 +8,7 @@ namespace CFABingo.Utilities.Settings;
 public class Theme
 {
     public string Identifier;
+    public bool HasChanged;
     
     public SolidColorBrush MainPanelBackgroundColour;
     public SolidColorBrush MainPanelButtonColour;
@@ -31,6 +31,7 @@ public class Theme
     public Theme()
     {
         Identifier = "";
+        HasChanged = false;
         
         var res = Application.Current.Resources;
         

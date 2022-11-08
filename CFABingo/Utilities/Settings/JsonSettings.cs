@@ -7,6 +7,7 @@ public struct JsonSettings
     public int MainPanelIdleAnimationDelay;
 
     public int MainWindowFullscreenBorderThickness;
+    public bool CheckCloseWindowIfMidGame;
 
     public string CurrentTheme;
 }

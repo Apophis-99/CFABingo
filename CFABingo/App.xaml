@@ -13,6 +13,7 @@
 
                 <ResourceDictionary Source="Styles/Controls/PanelHeaderStyles.xaml" />
                 <ResourceDictionary Source="Styles/Controls/SettingsOptionStyles.xaml" />
+                <ResourceDictionary Source="Styles/Controls/DialogBoxStyles.xaml" />
 
                 <ResourceDictionary Source="Styles/Windows/SettingsWindowStyles.xaml" />
 

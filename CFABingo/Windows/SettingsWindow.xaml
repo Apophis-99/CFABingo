@@ -3,7 +3,7 @@
     Height="450"
     IsVisibleChanged="Window_OnVisibilityChange"
     ShowInTaskbar="False"
-    Title="SettingsWindow"
+    Title="Settings"
     Topmost="True"
     Width="800"
     WindowStyle="ToolWindow"
@@ -38,9 +38,7 @@
                     <ComboBox
                         Grid.Row="0"
                         SelectionChanged="ThemesDropDown_SelectionChanged"
-                        x:Name="ThemesDropDown">
-                        <ComboBoxItem IsSelected="True">DefaultTheme</ComboBoxItem>
-                    </ComboBox>
+                        x:Name="ThemesDropDown" />
 
                     <ScrollViewer Grid.Row="1">
                         <StackPanel x:Name="ThemesTab" />

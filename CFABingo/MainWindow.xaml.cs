@@ -1,6 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using CFABingo.Controls;
 using CFABingo.Panels;
 using CFABingo.Utilities;
 
@@ -49,6 +53,11 @@ public partial class MainWindow
     private WindowState _oldWindowState;
     private bool _isFullscreen;
 
+    // Dialog
+    private DialogBox _dialogBox;
+    private bool _shouldClose;
+    private bool _finishedDialogs;
+    
     // Manager
     public static readonly ApplicationManager Manager = new();
     
@@ -72,7 +81,12 @@ public partial class MainWindow
         Grid.SetRow(GameStatePanel, 0);
         Grid.SetRowSpan(GameStatePanel, 3);
         Layout.Children.Add(GameStatePanel);
-
+        
+        _dialogBox = new DialogBox
+        {
+            Visibility = Visibility.Collapsed
+        };
+        
         InitCommands();
     }
 
@@ -128,7 +142,97 @@ public partial class MainWindow
         
         Manager.CurrentSettings.SaveSettings();
     }
+    
+    private void Window_Closing(object? sender, CancelEventArgs e)
+    {
+        if (_finishedDialogs)
+        {
+            if (_shouldClose)
+                return;
+            _finishedDialogs = false;
+            _finishedMidGameCloseCheck = false;
+            _finishedSaveAlteredThemeCheck = false;
+            e.Cancel = true;
+            return;
+        }
 
+        e.Cancel = true;
+
+        if (_dialogBox.Visibility == Visibility.Visible) return;
+
+        if (Manager.CurrentSettings.CheckCloseWindowIfMidGame && Manager.CurrentGame.CurrentNumber != 0 && !_finishedMidGameCloseCheck)
+        {
+            _finishedMidGameCloseCheck = true;
+            InvokeDialogBox("You are mid game! Are you sure you want to close the application?",
+                new List<string> { "Yes", "No" }, (o, args) =>
+                {
+                    switch (_dialogBox.SelectedOption)
+                    {
+                        case "Yes":
+                            _shouldClose = true;
+                            break;
+                        case "No":
+                            _shouldClose = false;
+                            _finishedDialogs = true;
+                            break;
+                    }
+                    _dialogBox.Visibility = Visibility.Collapsed;
+                    Close();
+                });
+            return;
+        }
+
+        if (Manager.CurrentSettings.ThemeDataAltered() && !_finishedSaveAlteredThemeCheck)
+        {
+            _finishedSaveAlteredThemeCheck = true;
+            InvokeDialogBox("You have altered theme data. Would you like to save your changes?",
+                new List<string> { "Save", "Discard", "Cancel" }, (o, args) =>
+                {
+                    switch (_dialogBox.SelectedOption)
+                    {
+                        case "Save":
+                            _shouldClose = true;
+                            break;
+                        case "Discard":
+                            _shouldClose = true;
+                            break;
+                        case "Cancel":
+                            _shouldClose = false;
+                            _finishedDialogs = true;
+                            break;
+                    }
+                    _dialogBox.Visibility = Visibility.Collapsed;
+                    _finishedDialogs = true;
+                    Close();
+                });
+        }
+    }
+
+    #region Window Closing Checks
+
+    private bool _finishedMidGameCloseCheck;
+    private bool _finishedSaveAlteredThemeCheck;
+    
+    private void InvokeDialogBox(string msg, List<string> buttons, EventHandler handler)
+    {
+        _dialogBox = new DialogBox
+        {
+            Message = msg,
+            ButtonOptions = buttons,
+            Visibility = Visibility.Visible
+        };
+        _dialogBox.OptionChosen += handler;
+        
+        RemoveLogicalChild(_dialogBox);
+        
+        Grid.SetColumn(_dialogBox, 0);
+        Grid.SetColumnSpan(_dialogBox, 3);
+        Grid.SetRow(_dialogBox, 0);
+        Grid.SetRowSpan(_dialogBox, 3);
+        Layout.Children.Add(_dialogBox);
+    }
+    
     #endregion
     
+    #endregion
 }

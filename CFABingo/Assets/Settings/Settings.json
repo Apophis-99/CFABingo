@@ -5,5 +5,7 @@
   
   "MainWindowFullscreenBorderThickness": 8,
   
+  "CheckCloseWindowIfMidGame": true,
+  
   "CurrentTheme": "DefaultTheme"
 }

@@ -22,10 +22,14 @@ public partial class SettingsWindow
 
         _options = new List<SettingsOption>();
         
+        ThemesDropDown.Items.Clear();
+        ThemesDropDown.Items.Add("DefaultTheme");
         foreach (var fileName in Files.GetFilesInDir("./Assets/Settings/Themes/").Where(fileName => fileName != "DefaultTheme"))
         {
             ThemesDropDown.Items.Add(fileName);
         }
+        
+        ThemesDropDown.SelectedIndex = 0;
     }
 
     #region Options
@@ -50,6 +54,15 @@ public partial class SettingsWindow
             Type = SettingsOptionType.Integer,
             Bond = nameof(MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThickness),
             DisplayValue = MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThickness
+        });
+        GeneralTab.Children.Add(_options.Last());
+        
+        _options.Add(new SettingsOption
+        {
+            Title = "Confirm Close When Mid Game",
+            Type = SettingsOptionType.Boolean,
+            Bond = nameof(MainWindow.Manager.CurrentSettings.CheckCloseWindowIfMidGame),
+            DisplayValue = MainWindow.Manager.CurrentSettings.CheckCloseWindowIfMidGame
         });
         GeneralTab.Children.Add(_options.Last());
     }
@@ -313,7 +326,10 @@ public partial class SettingsWindow
     
     private void Window_OnVisibilityChange(object sender, DependencyPropertyChangedEventArgs e)
     {
-        AddOptions();
+        if (Visibility != Visibility.Hidden)
+            AddOptions();
+        
+        ThemesDropDown.SelectedIndex = ThemesDropDown.Items.IndexOf(MainWindow.Manager.CurrentSettings.CurrentTheme.Identifier);
     }
 
     #endregion
