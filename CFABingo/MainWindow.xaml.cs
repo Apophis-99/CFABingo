@@ -10,7 +10,7 @@ using CFABingo.Utilities;
 
 namespace CFABingo;
 
-public partial class MainWindow
+public sealed partial class MainWindow
 {
     #region Commands
 
@@ -44,20 +44,26 @@ public partial class MainWindow
     #region Panels
 
     public static readonly MainPanel MainPanel = new();
-    public static readonly RecentPanel RecentPanel = new();
+    public static readonly RecentPanel RecentPanel = new() { Orientation = Orientation.Horizontal };
     public static readonly GameStatePanel GameStatePanel = new() { Orientation = Orientation.Vertical };
+    
+    // Grid splitters
+    public static readonly GridSplitter HorizontalSplitter = new()
+    {
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        ResizeDirection = GridResizeDirection.Rows
+    };
+
+    public static readonly GridSplitter VerticalSplitter = new()
+    {
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        ResizeDirection = GridResizeDirection.Columns
+    };
 
     #endregion
-    
-    // Window States
-    private WindowState _oldWindowState;
-    private bool _isFullscreen;
 
-    // Dialog
-    private DialogBox _dialogBox;
-    private bool _shouldClose;
-    private bool _finishedDialogs;
-    
     // Manager
     public static readonly ApplicationManager Manager = new();
     
@@ -67,7 +73,7 @@ public partial class MainWindow
 
         _oldWindowState = WindowState;
         _isFullscreen = false;
-
+        
         // Add panels
         Grid.SetColumn(MainPanel, 0);
         Grid.SetRow(MainPanel, 0);
@@ -82,11 +88,23 @@ public partial class MainWindow
         Grid.SetRowSpan(GameStatePanel, 3);
         Layout.Children.Add(GameStatePanel);
         
+        // Add Grid Splitters
+        Grid.SetColumn(HorizontalSplitter, 0);
+        Grid.SetRow(HorizontalSplitter, 1);
+        Layout.Children.Add(HorizontalSplitter);
+        
+        Grid.SetColumn(VerticalSplitter, 1);
+        Grid.SetRow(VerticalSplitter, 0);
+        Grid.SetRowSpan(VerticalSplitter, 3);
+        Layout.Children.Add(VerticalSplitter);
+        
+        // Init dialog box
         _dialogBox = new DialogBox
         {
             Visibility = Visibility.Collapsed
         };
         
+        // Register commands
         InitCommands();
     }
 
@@ -101,7 +119,12 @@ public partial class MainWindow
     {
         //Manager.DebugWindow.Show();
     }
-        
+    
+    
+    // Window States
+    private WindowState _oldWindowState;
+    private bool _isFullscreen;
+    
     private void ToggleFullscreen(object sender, ExecutedRoutedEventArgs e)
     {
         if (!_isFullscreen)
@@ -164,7 +187,7 @@ public partial class MainWindow
         {
             _finishedMidGameCloseCheck = true;
             InvokeDialogBox("You are mid game! Are you sure you want to close the application?",
-                new List<string> { "Yes", "No" }, (o, args) =>
+                new List<string> { "Yes", "No" }, (_, _) =>
                 {
                     switch (_dialogBox.SelectedOption)
                     {
@@ -179,14 +202,12 @@ public partial class MainWindow
                     _dialogBox.Visibility = Visibility.Collapsed;
                     Close();
                 });
-            return;
         }
-
-        if (Manager.CurrentSettings.ThemeDataAltered() && !_finishedSaveAlteredThemeCheck)
+        else if (Manager.CurrentSettings.ThemeDataAltered() && !_finishedSaveAlteredThemeCheck)
         {
             _finishedSaveAlteredThemeCheck = true;
             InvokeDialogBox("You have altered theme data. Would you like to save your changes?",
-                new List<string> { "Save", "Discard", "Cancel" }, (o, args) =>
+                new List<string> { "Save", "Discard", "Cancel" }, (_, _) =>
                 {
                     switch (_dialogBox.SelectedOption)
                     {
@@ -206,10 +227,19 @@ public partial class MainWindow
                     Close();
                 });
         }
+        else
+        {
+            e.Cancel = false;
+        }
     }
 
     #region Window Closing Checks
 
+    // Dialog
+    private DialogBox _dialogBox;
+    private bool _shouldClose;
+    private bool _finishedDialogs;
+    
     private bool _finishedMidGameCloseCheck;
     private bool _finishedSaveAlteredThemeCheck;
     

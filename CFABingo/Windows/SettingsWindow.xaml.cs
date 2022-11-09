@@ -56,6 +56,8 @@ public partial class SettingsWindow
             DisplayValue = MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThickness
         });
         GeneralTab.Children.Add(_options.Last());
+
+        GeneralTab.Children.Add(AddRegionHeader("Closing Dialogs"));
         
         _options.Add(new SettingsOption
         {

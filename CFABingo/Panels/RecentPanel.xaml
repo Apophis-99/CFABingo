@@ -18,7 +18,8 @@
         <controls:PanelHeader
             Grid.Row="0"
             Orientation="Horizontal"
-            Title="Recent" />
+            Title="Recent"
+            x:Name="Header" />
 
         <ScrollViewer
             Grid.Row="1"

@@ -19,20 +19,5 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <GridSplitter
-            Grid.Column="0"
-            Grid.Row="1"
-            HorizontalAlignment="Stretch"
-            ResizeDirection="Rows"
-            VerticalAlignment="Stretch" />
-
-        <GridSplitter
-            Grid.Column="1"
-            Grid.Row="0"
-            Grid.RowSpan="3"
-            HorizontalAlignment="Stretch"
-            ResizeDirection="Columns"
-            VerticalAlignment="Stretch" />
-
     </Grid>
 </Window>

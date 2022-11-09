@@ -7,7 +7,7 @@ namespace CFABingo.Controls;
 
 public partial class PanelHeader
 {
-    private bool _collapsed = false;
+    private bool _collapsed;
     
     private string _title = "<PanelTitle>";
     private Orientation _orientation = Orientation.Vertical;
@@ -30,7 +30,14 @@ public partial class PanelHeader
     public bool Collapsed
     {
         get => _collapsed;
-        set { _collapsed = value; UpdateOrientation(); }
+        set 
+        { 
+            _collapsed = value; UpdateOrientation();
+            if (Title == "Recent")
+                MainWindow.RecentPanel.Collapsed = Collapsed;
+            else
+                MainWindow.GameStatePanel.Collapsed = Collapsed;
+        }
     }
 
     public PanelHeader()

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media;
 using Newtonsoft.Json;
 
 namespace CFABingo.Utilities.Settings;
@@ -16,7 +16,7 @@ public class Settings
 
     public int MainWindowFullscreenBorderThickness; // Adjusts the border from the edge when in fullscreen mode
 
-    public bool CheckCloseWindowIfMidGame;
+    public bool CheckCloseWindowIfMidGame; // Should the application check that you want to close the app when you are mid game
     
     public Settings()
     {
@@ -78,7 +78,7 @@ public class Settings
     {
         if (id.Contains("Colour"))
         {
-            if (CurrentTheme.GetType().GetField(id)?.GetValue(CurrentTheme) != val)
+            if (!Equals(((SolidColorBrush) CurrentTheme.GetType().GetField(id)?.GetValue(CurrentTheme)!).Color, ((SolidColorBrush) val).Color) &&!CurrentTheme.HasChanged)
                 CurrentTheme.HasChanged = true;
             CurrentTheme.GetType().GetField(id)?.SetValue(CurrentTheme, val);
         }

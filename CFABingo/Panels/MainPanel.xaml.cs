@@ -79,7 +79,11 @@ public partial class MainPanel
     
     private void TextIdleAnim(object? sender, EventArgs e)
     {
-        if (!MainWindow.Manager.CurrentSettings.MainPanelBallDoIdleAnimation) return;
+        if (!MainWindow.Manager.CurrentSettings.MainPanelBallDoIdleAnimation)
+        {
+            DisplayNumberText.Text = "?";
+            return;
+        }
         _dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, MainWindow.Manager.CurrentSettings.MainPanelIdleAnimationDelay);
         DisplayNumberText.Text = DisplayNumberText.Text switch
         {

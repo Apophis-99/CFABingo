@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
@@ -10,11 +11,19 @@ public partial class GameStatePanel
     private readonly List<Grid> _balls;
 
     private Orientation _orientation = Orientation.Vertical;
+    private bool _collapsed;
+    private Vector2 _expandedWidth;
 
     public Orientation Orientation
     {
         get => _orientation;
         set { _orientation = value; SwitchOrientation(); }
+    }
+    
+    public bool Collapsed
+    {
+        get => _collapsed;
+        set { _collapsed = value; if (_collapsed) CollapsePanel(); else ExpandPanel(); }
     }
     
     public GameStatePanel()
@@ -104,14 +113,54 @@ public partial class GameStatePanel
 
     private void Panel_SizeChanged(object sender, SizeChangedEventArgs e)
     {
+        if (_collapsed) return;
+
         foreach (var ball in _balls)
         {
             var margin = ball.Margin.Top;
-            
-            ((Ellipse)ball.Children[0]).Width = (ball.ActualHeight < ball.ActualWidth) ? ball.ActualHeight - margin : ball.ActualWidth - margin;
-            ((Ellipse)ball.Children[0]).Height = (ball.ActualHeight < ball.ActualWidth) ? ball.ActualHeight - margin : ball.ActualWidth - margin;
+
+            ((Ellipse)ball.Children[0]).Width = (ball.ActualHeight < ball.ActualWidth)
+                ? ball.ActualHeight - margin
+                : ball.ActualWidth - margin;
+            ((Ellipse)ball.Children[0]).Height = (ball.ActualHeight < ball.ActualWidth)
+                ? ball.ActualHeight - margin
+                : ball.ActualWidth - margin;
 
             ((TextBlock)ball.Children[1]).FontSize = ball.ActualHeight / 2 - 2;
         }
+    }
+    
+    private void CollapsePanel()
+    {
+        _expandedWidth = new Vector2((float) ActualWidth, (float) ActualHeight);
+        DisplayGrid.Visibility = Visibility.Collapsed;
+        if (Orientation == Orientation.Horizontal)
+        {
+            Height = Header.ActualHeight;
+            MainWindow.HorizontalSplitter.IsEnabled = false;
+        }
+        else
+        {
+            Width = Header.ActualHeight;
+            MainWindow.VerticalSplitter.IsEnabled = false;
+        }
+    }
+
+    private void ExpandPanel()
+    {
+        if (Orientation == Orientation.Horizontal)
+        {
+            MainWindow.HorizontalSplitter.IsEnabled = true;
+            Height = _expandedWidth.Y;
+        }
+        else
+        {
+            MainWindow.VerticalSplitter.IsEnabled = true;
+            Width = _expandedWidth.X;
+        }
+
+        HorizontalAlignment = HorizontalAlignment.Stretch;
+        VerticalAlignment = VerticalAlignment.Stretch;
+        DisplayGrid.Visibility = Visibility.Visible;
     }
 }
