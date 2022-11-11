@@ -64,31 +64,46 @@ public partial class RecentPanel
     {
         Panel.Children.Clear();
     }
+    
+    private void UpdatePanelSize()
+    {
+        if (Orientation == Orientation.Horizontal)
+        {
+            ((Grid)LogicalTreeHelper.GetParent(this)).RowDefinitions[2].Height = new GridLength(_expandedSize.Y);
+            Height = ((Grid)LogicalTreeHelper.GetParent(this)).Height;
+        }
+        else
+        {
+            ((Grid)LogicalTreeHelper.GetParent(this)).ColumnDefinitions[2].Width = new GridLength(_expandedSize.X);
+            Width = ((Grid)LogicalTreeHelper.GetParent(this)).Width;
+        }
+    }
 
     private void CollapsePanel()
     {
-        _expandedSize = new Vector2((float) ScrollViewer.ActualWidth, (float) ScrollViewer.ActualHeight);
+        _expandedSize = new Vector2((float) ActualWidth, (float) ActualHeight);
         if (Orientation == Orientation.Horizontal)
         {
-            //Height = Header.ActualHeight;
-            ScrollViewer.Height = 0;
-            //ScrollViewer.Visibility = Visibility.Collapsed;
+            ScrollViewer.Visibility = Visibility.Collapsed;
+            Height = Header.ActualHeight;
+            ((Grid)LogicalTreeHelper.GetParent(this)).RowDefinitions[2].Height = new GridLength(Height);
             MainWindow.HorizontalSplitter.IsEnabled = false;
         }
         else
         {
-            //Width = Header.ActualHeight;
             ScrollViewer.Visibility = Visibility.Collapsed;
+            Width = Header.ActualHeight;
+            ((Grid)LogicalTreeHelper.GetParent(this)).ColumnDefinitions[2].Width = new GridLength(Width);
             MainWindow.VerticalSplitter.IsEnabled = false;
         }
     }
-
+    
     private void ExpandPanel()
     {
         if (Orientation == Orientation.Horizontal)
         {
-            ScrollViewer.Height = _expandedSize.Y;
-            //ScrollViewer.Visibility = Visibility.Visible;
+            //ScrollViewer.Height = _expandedSize.Y;
+            ScrollViewer.Visibility = Visibility.Visible;
             MainWindow.HorizontalSplitter.IsEnabled = true;
             //Height = _expandedWidth.Y;
         }
@@ -98,5 +113,7 @@ public partial class RecentPanel
             MainWindow.VerticalSplitter.IsEnabled = true;
             //Width = _expandedWidth.X;
         }
+        UpdatePanelSize();
     }
+
 }

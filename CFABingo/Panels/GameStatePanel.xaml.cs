@@ -12,7 +12,7 @@ public partial class GameStatePanel
 
     private Orientation _orientation = Orientation.Vertical;
     private bool _collapsed;
-    private Vector2 _expandedWidth;
+    private Vector2 _expandedSize;
 
     public Orientation Orientation
     {
@@ -130,18 +130,34 @@ public partial class GameStatePanel
         }
     }
     
+    private void UpdatePanelSize()
+    {
+        if (Orientation == Orientation.Horizontal)
+        {
+            ((Grid)LogicalTreeHelper.GetParent(this)).RowDefinitions[2].Height = new GridLength(_expandedSize.Y);
+            Height = ((Grid)LogicalTreeHelper.GetParent(this)).Height;
+        }
+        else
+        {
+            ((Grid)LogicalTreeHelper.GetParent(this)).ColumnDefinitions[2].Width = new GridLength(_expandedSize.X);
+            Width = ((Grid)LogicalTreeHelper.GetParent(this)).Width;
+        }
+    }
+    
     private void CollapsePanel()
     {
-        _expandedWidth = new Vector2((float) ActualWidth, (float) ActualHeight);
+        _expandedSize = new Vector2((float) ActualWidth, (float) ActualHeight);
         DisplayGrid.Visibility = Visibility.Collapsed;
         if (Orientation == Orientation.Horizontal)
         {
             Height = Header.ActualHeight;
+            ((Grid)LogicalTreeHelper.GetParent(this)).RowDefinitions[2].Height = new GridLength(Height);
             MainWindow.HorizontalSplitter.IsEnabled = false;
         }
         else
         {
             Width = Header.ActualHeight;
+            ((Grid)LogicalTreeHelper.GetParent(this)).ColumnDefinitions[2].Width = new GridLength(Width);
             MainWindow.VerticalSplitter.IsEnabled = false;
         }
     }
@@ -151,16 +167,17 @@ public partial class GameStatePanel
         if (Orientation == Orientation.Horizontal)
         {
             MainWindow.HorizontalSplitter.IsEnabled = true;
-            Height = _expandedWidth.Y;
+            Height = _expandedSize.Y;
         }
         else
         {
             MainWindow.VerticalSplitter.IsEnabled = true;
-            Width = _expandedWidth.X;
+            Width = _expandedSize.X;
         }
 
         HorizontalAlignment = HorizontalAlignment.Stretch;
         VerticalAlignment = VerticalAlignment.Stretch;
         DisplayGrid.Visibility = Visibility.Visible;
+        UpdatePanelSize();
     }
 }
