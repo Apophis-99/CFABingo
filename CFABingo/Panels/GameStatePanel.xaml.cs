@@ -113,7 +113,7 @@ public partial class GameStatePanel
 
     private void Panel_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (_collapsed) return;
+        if (Collapsed) return;
 
         foreach (var ball in _balls)
         {
@@ -147,7 +147,12 @@ public partial class GameStatePanel
     private void CollapsePanel()
     {
         _expandedSize = new Vector2((float) ActualWidth, (float) ActualHeight);
-        DisplayGrid.Visibility = Visibility.Collapsed;
+
+        foreach (var ball in _balls)
+        {
+            ball.Visibility = Visibility.Collapsed;
+        }
+        
         if (Orientation == Orientation.Horizontal)
         {
             Height = Header.ActualHeight;
@@ -160,10 +165,14 @@ public partial class GameStatePanel
             ((Grid)LogicalTreeHelper.GetParent(this)).ColumnDefinitions[2].Width = new GridLength(Width);
             MainWindow.VerticalSplitter.IsEnabled = false;
         }
+
+        Header.Height = ActualHeight;
     }
 
     private void ExpandPanel()
     {
+        Header.Height = Width;
+        
         if (Orientation == Orientation.Horizontal)
         {
             MainWindow.HorizontalSplitter.IsEnabled = true;
@@ -174,10 +183,14 @@ public partial class GameStatePanel
             MainWindow.VerticalSplitter.IsEnabled = true;
             Width = _expandedSize.X;
         }
-
         HorizontalAlignment = HorizontalAlignment.Stretch;
         VerticalAlignment = VerticalAlignment.Stretch;
-        DisplayGrid.Visibility = Visibility.Visible;
+        
+        foreach (var ball in _balls)
+        {
+            ball.Visibility = Visibility.Visible;
+        }
+        
         UpdatePanelSize();
     }
 }

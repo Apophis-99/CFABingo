@@ -1,4 +1,6 @@
-﻿namespace CFABingo.Utilities.Settings;
+﻿using System.Collections.Generic;
+
+namespace CFABingo.Utilities.Settings;
 
 public struct JsonSettings
 {
@@ -6,7 +8,8 @@ public struct JsonSettings
     public bool MainPanelBallDoIdleAnimation;
     public int MainPanelIdleAnimationDelay;
 
-    public int MainWindowFullscreenBorderThickness;
+    public List<int> MainWindowFullscreenBorderThickness;
+
     public bool CheckCloseWindowIfMidGame;
 
     public string CurrentTheme;

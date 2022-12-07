@@ -72,8 +72,10 @@ public sealed partial class MainWindow
         InitializeComponent();
 
         _oldWindowState = WindowState;
-        _isFullscreen = false;
+        IsFullscreen = false;
         
+        Manager.CurrentSettings.ApplyBorderThickness(true);
+
         // Add panels
         Grid.SetColumn(MainPanel, 0);
         Grid.SetRow(MainPanel, 0);
@@ -123,28 +125,29 @@ public sealed partial class MainWindow
     
     // Window States
     private WindowState _oldWindowState;
-    private bool _isFullscreen;
+    public static bool IsFullscreen;
     
     private void ToggleFullscreen(object sender, ExecutedRoutedEventArgs e)
     {
-        if (!_isFullscreen)
+        if (!IsFullscreen)
         {
             _oldWindowState = WindowState;
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
-            BorderThickness = new Thickness(8);
+            Manager.CurrentSettings.ApplyBorderThickness(false);
 
-            _isFullscreen = true;
+            IsFullscreen = true;
         }
         else
         {
             WindowState = _oldWindowState;
             WindowStyle = WindowStyle.SingleBorderWindow;
             ResizeMode = ResizeMode.CanResize;
-            BorderThickness = new Thickness(0);
+            Manager.CurrentSettings.ApplyBorderThickness(true);
 
-            _isFullscreen = false;
+
+            IsFullscreen = false;
         }
     }
 

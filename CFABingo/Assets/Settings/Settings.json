@@ -1,11 +1,11 @@
 ﻿{
   "MainPanelShowButton": false,
-  "MainPanelBallDoIdleAnimation": true,
+  "MainPanelBallDoIdleAnimation": false,
   "MainPanelIdleAnimationDelay": 500,
   
-  "MainWindowFullscreenBorderThickness": 8,
+  "MainWindowFullscreenBorderThickness": [8,8,8,8],
   
   "CheckCloseWindowIfMidGame": true,
   
-  "CurrentTheme": "DefaultTheme"
+  "CurrentTheme": "5. PinkTheme"
 }

@@ -47,13 +47,51 @@ public partial class SettingsWindow
 
     private void AddGeneralOptions()
     {
-        _options.Add(new SettingsOption
+        GeneralTab.Children.Add(AddRegionHeader("Window Fullscreen Border"));
+
+        /*_options.Add(new SettingsOption
         {
             Title = "Window Fullscreen Border",
             Warning = "Delicate Settings - Don't mess with this unless you understand what it does!",
             Type = SettingsOptionType.Integer,
             Bond = nameof(MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThickness),
             DisplayValue = MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThickness
+        });
+        GeneralTab.Children.Add(_options.Last());*/
+        _options.Add(new SettingsOption
+        {
+            Title = "Window Fullscreen Border Left",
+            Warning = "Delicate Settings - Don't mess with this unless you understand what it does!",
+            Type = SettingsOptionType.Integer,
+            Bond = nameof(MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessLeft),
+            DisplayValue = MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessLeft
+        });
+        GeneralTab.Children.Add(_options.Last());
+        _options.Add(new SettingsOption
+        {
+            Title = "Window Fullscreen Border Top",
+            Warning = "Delicate Settings - Don't mess with this unless you understand what it does!",
+            Type = SettingsOptionType.Integer,
+            Bond = nameof(MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessTop),
+            DisplayValue = MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessTop
+        });
+        GeneralTab.Children.Add(_options.Last());
+        _options.Add(new SettingsOption
+        {
+            Title = "Window Fullscreen Border Right",
+            Warning = "Delicate Settings - Don't mess with this unless you understand what it does!",
+            Type = SettingsOptionType.Integer,
+            Bond = nameof(MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessRight),
+            DisplayValue = MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessRight
+        });
+        GeneralTab.Children.Add(_options.Last());
+        _options.Add(new SettingsOption
+        {
+            Title = "Window Fullscreen Border Bottom",
+            Warning = "Delicate Settings - Don't mess with this unless you understand what it does!",
+            Type = SettingsOptionType.Integer,
+            Bond = nameof(MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessBottom),
+            DisplayValue = MainWindow.Manager.CurrentSettings.MainWindowFullscreenBorderThicknessBottom
         });
         GeneralTab.Children.Add(_options.Last());
 

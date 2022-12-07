@@ -5,6 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,12 +24,33 @@
       <Resource Include="Assets\SettingChangedIcon.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <None Remove="Assets\Settings\Themes\CustomTheme1.json" />
-      <Content Include="Assets\Settings\Themes\CustomTheme1.json">
+      <None Remove="Assets\Settings\Themes\CustomTheme2.json" />
+      <Content Include="Assets\Settings\Themes\5. PinkTheme.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <None Remove="Assets\Settings\Themes\CustomTheme2.json" />
-      <Content Include="Assets\Settings\Themes\PinkTheme.json">
+      <None Remove="Assets\Settings\Themes\GreenTheme.json" />
+      <None Remove="Assets\AppIcon.png" />
+      <Resource Include="Assets\AppIcon.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Settings\Themes\1. YellowTheme.json" />
+      <Content Include="Assets\Settings\Themes\1. YellowTheme.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\Settings\Themes\6. GreenTheme.json" />
+      <Content Include="Assets\Settings\Themes\6. GreenTheme.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\Settings\Themes\4. BrownTheme.json" />
+      <Content Include="Assets\Settings\Themes\4. BrownTheme.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\Settings\Themes\3. BlueTheme.json" />
+      <Content Include="Assets\Settings\Themes\3. BlueTheme.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\Settings\Themes\2. RedTheme.json" />
+      <Content Include="Assets\Settings\Themes\2. RedTheme.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

@@ -1,0 +1,19 @@
+﻿{
+  "MainPanelBackgroundColour": "#76428a",
+  "MainPanelButtonColour": "#9badb7",
+  "MainPanelButtonBorderColour": "#847e87",
+  "MainPanelBallColour": "#690092",
+  "MainPanelBallTextColour": "#000000",
+
+  "RecentPanelBackgroundColour": "#964eb2",
+  "RecentPanelBallColour": "#847e87",
+  "RecentPanelBallTextColour": "#000000",
+
+  "GameStatePanelBackgroundColour": "#964eb2",
+  "GameStatePanelUncalledBallColour": "#576D7D",
+  "GameStatePanelCalledBallColour": "#D58AF2",
+  "GameStatePanelBallTextColour": "#000000",
+
+  "PanelHeaderColour": "#9badb7",
+  "PanelHeaderTextColour": "#000000"
+}

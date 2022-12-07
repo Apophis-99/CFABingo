@@ -1,6 +1,8 @@
 ﻿<Window
+    BorderThickness="{DynamicResource MainWindowBorderThickness}"
     Closing="Window_Closing"
     Height="810"
+    Icon="Assets/AppIcon.png"
     Title="Bingo"
     Unloaded="Window_UnLoaded"
     Width="1440"
@@ -18,6 +20,5 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
     </Grid>
 </Window>

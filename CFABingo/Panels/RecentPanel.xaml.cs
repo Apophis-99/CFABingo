@@ -115,5 +115,4 @@ public partial class RecentPanel
         }
         UpdatePanelSize();
     }
-
 }

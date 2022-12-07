@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media;
+using System.Windows;
 using Newtonsoft.Json;
 
 namespace CFABingo.Utilities.Settings;
@@ -13,8 +14,11 @@ public class Settings
     public bool MainPanelShowButton; // Show or hide button on main panel
     public bool MainPanelBallDoIdleAnimation = true; // Do the idle animation? - main panel sorts itself out no need to manage in settings
     public int MainPanelIdleAnimationDelay = 300; // The delay between each frame of animation - main panel sorts itself out no need to manage in settings
-
-    public int MainWindowFullscreenBorderThickness; // Adjusts the border from the edge when in fullscreen mode
+    
+    public int MainWindowFullscreenBorderThicknessLeft; // Adjusts the border from the edge when in fullscreen mode (left)
+    public int MainWindowFullscreenBorderThicknessTop; // Adjusts the border from the edge when in fullscreen mode (top)
+    public int MainWindowFullscreenBorderThicknessRight; // Adjusts the border from the edge when in fullscreen mode (right)
+    public int MainWindowFullscreenBorderThicknessBottom; // Adjusts the border from the edge when in fullscreen mode (bottom)
 
     public bool CheckCloseWindowIfMidGame; // Should the application check that you want to close the app when you are mid game
     
@@ -39,7 +43,11 @@ public class Settings
         MainPanelBallDoIdleAnimation = json.MainPanelBallDoIdleAnimation;
         MainPanelIdleAnimationDelay = json.MainPanelIdleAnimationDelay;
 
-        MainWindowFullscreenBorderThickness = json.MainWindowFullscreenBorderThickness;
+        var thickness = json.MainWindowFullscreenBorderThickness;
+        MainWindowFullscreenBorderThicknessLeft = Convert.ToInt32(thickness[0]);
+        MainWindowFullscreenBorderThicknessTop = Convert.ToInt32(thickness[1]);
+        MainWindowFullscreenBorderThicknessRight = Convert.ToInt32(thickness[2]);
+        MainWindowFullscreenBorderThicknessBottom = Convert.ToInt32(thickness[3]);
 
         CheckCloseWindowIfMidGame = json.CheckCloseWindowIfMidGame;
         
@@ -56,7 +64,8 @@ public class Settings
         MainPanelBallDoIdleAnimation = MainPanelBallDoIdleAnimation,
         MainPanelIdleAnimationDelay = MainPanelIdleAnimationDelay,
 
-        MainWindowFullscreenBorderThickness = MainWindowFullscreenBorderThickness,
+        MainWindowFullscreenBorderThickness = new List<int> { MainWindowFullscreenBorderThicknessLeft, MainWindowFullscreenBorderThicknessTop, 
+            MainWindowFullscreenBorderThicknessRight, MainWindowFullscreenBorderThicknessBottom },
 
         CurrentTheme = CurrentTheme.Identifier
         };
@@ -78,8 +87,8 @@ public class Settings
     {
         if (id.Contains("Colour"))
         {
-            if (!Equals(((SolidColorBrush) CurrentTheme.GetType().GetField(id)?.GetValue(CurrentTheme)!).Color, ((SolidColorBrush) val).Color) &&!CurrentTheme.HasChanged)
-                CurrentTheme.HasChanged = true;
+            /*if (!Equals(((SolidColorBrush) CurrentTheme.GetType().GetField(id)?.GetValue(CurrentTheme)!).Color, ((SolidColorBrush) val).Color) &&!CurrentTheme.HasChanged)
+                CurrentTheme.HasChanged = true;*/
             CurrentTheme.GetType().GetField(id)?.SetValue(CurrentTheme, val);
         }
         else
@@ -91,5 +100,15 @@ public class Settings
         CurrentTheme.Apply();
 
         MainWindow.MainPanel.ShowButton = MainPanelShowButton;
+        ApplyBorderThickness(!MainWindow.IsFullscreen);
+    }
+
+    public void ApplyBorderThickness(bool zero = false)
+    {
+        if (!zero)
+            Application.Current.Resources["MainWindowBorderThickness"] = new Thickness(MainWindowFullscreenBorderThicknessLeft, MainWindowFullscreenBorderThicknessTop, 
+                MainWindowFullscreenBorderThicknessRight, MainWindowFullscreenBorderThicknessBottom);
+        else
+            Application.Current.Resources["MainWindowBorderThickness"] = new Thickness(0);
     }
 }

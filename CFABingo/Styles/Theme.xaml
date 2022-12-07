@@ -8,7 +8,7 @@
     <SolidColorBrush x:Key="MainPanelBallTextColour">#000000</SolidColorBrush>
 
     <!--  Recent Panel  -->
-    <SolidColorBrush x:Key="RecentPanelBackgroundColour">#4854D0</SolidColorBrush>
+    <SolidColorBrush x:Key="RecentPanelBackgroundColour">#475CD0</SolidColorBrush>
     <SolidColorBrush x:Key="RecentPanelBallColour">#3539CF</SolidColorBrush>
     <SolidColorBrush x:Key="RecentPanelBallTextColour">#000000</SolidColorBrush>
 
@@ -22,10 +22,8 @@
     <SolidColorBrush x:Key="PanelHeaderColour">#6743C0</SolidColorBrush>
     <SolidColorBrush x:Key="PanelHeaderTextColour">#000000</SolidColorBrush>
 
-    <!--  Scrollbar  -->
-    <SolidColorBrush Color="#978192" x:Key="ScrollbarTrackColour" />
-
-
     <FontFamily x:Key="DefaultFont">Cascadia Code</FontFamily>
+
+    <Thickness x:Key="MainWindowBorderThickness">8</Thickness>
 
 </ResourceDictionary>
